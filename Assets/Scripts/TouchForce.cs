@@ -43,7 +43,6 @@ public class TouchForce : MonoBehaviour {
     void Update () {
 		if (MayTouch)
         {
-#if UNITY_EDITOR
             if (Input.GetMouseButtonDown(0))
             {
                 var mousePos = Input.mousePosition;
@@ -51,15 +50,6 @@ public class TouchForce : MonoBehaviour {
                 mousePos = Camera.main.ScreenToWorldPoint(mousePos);
                 AddForce(mousePos);
             }
-#else
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-            {
-                Vector3 deltaPos = Input.GetTouch(0).deltaPosition;
-                deltaPos.z = 24.0f;
-                deltaPos = Camera.main.ScreenToWorldPoint(deltaPos);
-                AddForce(deltaPos);
-            }
-#endif
         }
     }
 
