@@ -30,6 +30,9 @@ public class TouchForce : MonoBehaviour {
     [SerializeField]
     float forceRadius = 100.0f;
 
+    [SerializeField]
+    GameObject touchEffect;
+
     #region Initialization
     private void Awake()
     {
@@ -44,7 +47,7 @@ public class TouchForce : MonoBehaviour {
             if (Input.GetMouseButtonDown(0))
             {
                 var mousePos = Input.mousePosition;
-                mousePos.z = 30.0f; // Distance between the camera and the objects
+                mousePos.z = 29.0f; // Distance between the camera and the objects - I put 1 point less so the rings will turn around randomly
                 mousePos = Camera.main.ScreenToWorldPoint(mousePos);
                 AddForce(mousePos);
             }
@@ -61,7 +64,6 @@ public class TouchForce : MonoBehaviour {
 
     void AddForce(Vector3 forcePosition)
     {
-        Debug.Log(forcePosition);
         MayTouch = false;
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Spawnable");
         foreach (var item in objects)
@@ -69,5 +71,6 @@ public class TouchForce : MonoBehaviour {
             item.GetComponent<Rigidbody>().AddExplosionForce(forceAmount, forcePosition, forceRadius);
         }
         GravityController.NormalGravity();
+        Instantiate(touchEffect, forcePosition, Quaternion.identity);
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spawnable
   - DeadZone
+  - PointZone
   layers:
   - Default
   - TransparentFX

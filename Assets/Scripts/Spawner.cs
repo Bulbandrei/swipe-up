@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour {
         GravityController.NoGravity();
         for (int i = 0; i < SPAWN_AMOUNT; i++)
         {
-            Instantiate(RingPrefab, new Vector3(Random.Range(-5.0f, 5.0f), 0.0f, 10.0f), Quaternion.identity);
+            Instantiate(RingPrefab, new Vector3(Random.Range(-5.0f, 5.0f), transform.position.y, transform.position.z), Quaternion.identity);
             ObjsOnScreen++;
         }
         TouchForce.Instance.MayTouch = true;

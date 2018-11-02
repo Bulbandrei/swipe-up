@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 23984397230763498}
   - component: {fileID: 54503473618361244}
   - component: {fileID: 114254403887329782}
+  - component: {fileID: 65167112790172464}
   m_Layer: 0
   m_Name: Normal Ring
   m_TagString: Spawnable
@@ -325,6 +326,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.1, z: 0.25}
   m_Center: {x: 0, y: -0.45, z: 0}
+--- !u!65 &65167112790172464
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827556862801566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.25, z: 0.25}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65168755576969618
 BoxCollider:
   m_ObjectHideFlags: 1

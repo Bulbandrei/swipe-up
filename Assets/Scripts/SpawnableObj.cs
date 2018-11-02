@@ -5,7 +5,8 @@ using UnityEngine;
 public class SpawnableObj : MonoBehaviour {
 
     #region Vars
-    int points = 0;
+    int points = 1;
+    float pointTimer = 2.0f;
     bool isAlive = true;
     #endregion
 
@@ -30,16 +31,29 @@ public class SpawnableObj : MonoBehaviour {
         {
             if (other.tag == "DeadZone")
             {
-                SelfDestroy();
+                SelfDestroy(false);
             }
         }
     }
 
-    void SelfDestroy()
+    private void OnTriggerStay(Collider other)
+    {
+        if (isAlive)
+        {
+            if (other.tag == "PointZone")
+            {
+                pointTimer -= Time.deltaTime;
+                if (pointTimer <= 0.0f)
+                    SelfDestroy(true);
+            }
+        }
+    }
+
+    void SelfDestroy(bool gotPoints)
     {
         isAlive = false;
         Destroy(transform.Find("Colliders").gameObject);
-        Spawner.Instance.ObjDestroyed(Points);
+        Spawner.Instance.ObjDestroyed(gotPoints ? Points : 0);
         Destroy(gameObject);
     }
 }
