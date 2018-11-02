@@ -60,7 +60,6 @@ public class Spawner : MonoBehaviour {
     #region Events
     public void ObjDestroyed(int points)
     {
-        Debug.Log(ObjsOnScreen);
         ObjsOnScreen--;
     }
     #endregion

@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 23984397230763498}
   - component: {fileID: 54503473618361244}
   - component: {fileID: 114254403887329782}
+  - component: {fileID: 114677355336687892}
   - component: {fileID: 65167112790172464}
   m_Layer: 0
   m_Name: Normal Ring
@@ -184,7 +185,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827556862801566}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.29953277, y: -0.35347748, z: -0.04281106, w: 0.885156}
   m_LocalPosition: {x: 0, y: -2.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -195,7 +196,7 @@ Transform:
   - {fileID: 4094285185208924}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -34.093002, y: -46.441, z: 9.450001}
 --- !u!4 &4967267910002680
 Transform:
   m_ObjectHideFlags: 1
@@ -224,7 +225,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ae6cf1939f363b545a0ad6ed677ac896, type: 3}
+  - {fileID: 2100000, guid: be0306357baef9c41b2627aba03d0b5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -529,3 +530,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1be376fe34820534b8d432093470af88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114677355336687892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827556862801566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2f09214e91ec04db68ef9ea31a88d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxZPosition: 10
