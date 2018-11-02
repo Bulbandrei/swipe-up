@@ -34,10 +34,14 @@ public class TouchForce : MonoBehaviour {
     void Update () {
 		if (MayTouch)
         {
+#if UNITY_EDITOR
+
+#else
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 AddForce(Input.GetTouch(0).deltaPosition);
             }
+#endif
         }
 	}
 
