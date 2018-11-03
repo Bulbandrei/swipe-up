@@ -53,7 +53,7 @@ public class SpawnableObj : MonoBehaviour {
     {
         isAlive = false;
         Destroy(transform.Find("Colliders").gameObject);
-        Spawner.Instance.ObjDestroyed(gotPoints ? Points : 0);
+        Spawner.Instance.ObjDestroyed(gotPoints ? Points : 0, gameObject);
         Destroy(gameObject);
     }
 }

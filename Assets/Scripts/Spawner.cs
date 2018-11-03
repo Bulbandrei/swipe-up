@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour {
 
     #region Vars
     int objsOnScreen;
+    List<GameObject> spawned = new List<GameObject>();
     #endregion
 
     #region Properties
@@ -22,16 +23,7 @@ public class Spawner : MonoBehaviour {
     {
         get
         {
-            return objsOnScreen;
-        }
-
-        set
-        {
-            objsOnScreen = value;
-            if (objsOnScreen == 0)
-            {
-                SpawnObjs();
-            }
+            return spawned.Count;
         }
     }
     #endregion
@@ -41,9 +33,16 @@ public class Spawner : MonoBehaviour {
     {
         Instance = this;
     }
-    void Start () {
+
+    void OnEnable()
+    {
         SpawnObjs();
 	}
+
+    void OnDisable()
+    {
+        DestroyObjs();
+    }
     #endregion
 	
 	void SpawnObjs()
@@ -51,16 +50,34 @@ public class Spawner : MonoBehaviour {
         GravityController.NoGravity();
         for (int i = 0; i < SPAWN_AMOUNT; i++)
         {
-            Instantiate(RingPrefab, new Vector3(Random.Range(-5.0f, 5.0f), transform.position.y, transform.position.z), Quaternion.identity);
-            ObjsOnScreen++;
+            var ring = Instantiate(RingPrefab, new Vector3(Random.Range(-5.0f, 5.0f), transform.position.y, transform.position.z), Quaternion.identity);
+            ring.transform.parent = transform;
+            spawned.Add(ring);
         }
         TouchForce.Instance.MayTouch = true;
     }
 
-    #region Events
-    public void ObjDestroyed(int points)
+    void DestroyObjs()
     {
-        ObjsOnScreen--;
+        foreach(var ring in spawned)
+        {
+            if(ring != null)
+            {
+                Destroy(ring);
+            }
+        }
+        spawned.Clear();
+    }
+
+    #region Events
+    public void ObjDestroyed(int points, GameObject gameObject)
+    {
+        GameManager.Instance.CurrentScore += points;
+        spawned.Remove(gameObject);
+        if(spawned.Count == 0)
+        {
+            SpawnObjs();
+        }
     }
     #endregion
 }
