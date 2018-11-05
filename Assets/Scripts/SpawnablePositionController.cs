@@ -46,7 +46,7 @@ public class SpawnablePositionController : MonoBehaviour {
 
         while (rigidbody.velocity.y > 0)
             yield return null;
-        GetComponent<Renderer>().material.color = Color.red;
+        //GetComponent<Renderer>().material.color = Color.red;
         transform.position = new Vector3(transform.position.x, transform.position.y, 10);
         //while(startPos.z < maxZPosition)
         //{

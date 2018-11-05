@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         InGame,
         EndGame
     }
+    private int currentRoundScore;
     private int currentScore;
     private int bestScore;
     private GameState currentGameState = GameState.Menu;
@@ -33,6 +34,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int CurrentRoundScore
+    {
+        get
+        {
+            return currentRoundScore;
+        }
+
+        set
+        {
+            currentRoundScore = value;
+        }
+    }
     public int CurrentScore
     {
         get
@@ -46,7 +59,7 @@ public class GameManager : MonoBehaviour
             {
                 bestScore = currentScore;
             }
-
+            CurrentRoundScore = 0;
             if(OnScoreUpdate != null)
             {
                 OnScoreUpdate();
@@ -75,7 +88,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    
+
     public void Awake()
     {
         Instance = this;

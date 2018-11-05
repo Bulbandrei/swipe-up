@@ -25,10 +25,10 @@ public class TouchForce : MonoBehaviour {
     public static TouchForce Instance;
 
     [SerializeField]
-    float forceAmount = 1000.0f;
+    float forceAmount = 1250.0f;
 
     [SerializeField]
-    float forceRadius = 100.0f;
+    float forceRadius = 10.0f;
 
     [SerializeField]
     GameObject touchEffect;
@@ -41,8 +41,8 @@ public class TouchForce : MonoBehaviour {
     #endregion
 
     void Update () {
-		if (MayTouch)
-        {
+		//if (MayTouch)
+  //      {
             if (Input.GetMouseButtonDown(0))
             {
                 var mousePos = Input.mousePosition;
@@ -50,7 +50,7 @@ public class TouchForce : MonoBehaviour {
                 mousePos = Camera.main.ScreenToWorldPoint(mousePos);
                 AddForce(mousePos);
             }
-        }
+        //}
     }
 
     void AddForce(Vector3 forcePosition)
@@ -60,11 +60,12 @@ public class TouchForce : MonoBehaviour {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Spawnable");
         foreach (var item in objects)
         {
+            forcePosition.z = item.transform.position.z + 0.15f;
             item.GetComponent<Rigidbody>().AddExplosionForce(forceAmount, forcePosition, forceRadius);
             item.GetComponent<SpawnablePositionController>().IsActive = true;
         }
         // Set Gravity back to normal
-        GravityController.NormalGravity();
+        GravityController.WaterGravity();
         // Spawn effect
         Instantiate(touchEffect, forcePosition, Quaternion.identity);
     }

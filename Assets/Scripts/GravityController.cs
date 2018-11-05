@@ -14,6 +14,11 @@ public class GravityController : MonoBehaviour {
         Physics.gravity = new Vector3(0,-9.8f,0);
     }
 
+    public static void WaterGravity()
+    {
+        Physics.gravity = new Vector3(0, -4.9f, 0);
+    }
+
     public static void SetGravity(Vector3 gravity)
     {
         Physics.gravity = gravity;

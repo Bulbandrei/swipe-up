@@ -14,7 +14,8 @@ public class Spawner : MonoBehaviour {
     GameObject RingPrefab;
 
     #region Vars
-    int objsOnScreen;
+    int objsOnScreen = 0;
+    int objsOnPointZone = 0;
     List<GameObject> spawned = new List<GameObject>();
     #endregion
 
@@ -23,7 +24,24 @@ public class Spawner : MonoBehaviour {
     {
         get
         {
-            return spawned.Count;
+            return objsOnScreen;
+        }
+        set
+        {
+            objsOnScreen = value;
+        }
+    }
+
+    public int ObjsOnPointZone
+    {
+        get
+        {
+            return objsOnPointZone;
+        }
+
+        set
+        {
+            objsOnPointZone = value;
         }
     }
     #endregion
@@ -48,12 +66,16 @@ public class Spawner : MonoBehaviour {
 	void SpawnObjs()
     {
         GravityController.NoGravity();
+
+        float xStartPos = Random.Range(-4.0f, 4.0f);
         for (int i = 0; i < SPAWN_AMOUNT; i++)
         {
-            var ring = Instantiate(RingPrefab, new Vector3(Random.Range(-5.0f, 5.0f), transform.position.y, transform.position.z), Quaternion.identity);
+            // Here I spawn a ring with a Z distance from each other so they won't collide at game start
+            var ring = Instantiate(RingPrefab, new Vector3(xStartPos + (.25f*i), transform.position.y, transform.position.z - (1*i)), Quaternion.identity);
             ring.transform.parent = transform;
             spawned.Add(ring);
         }
+        ObjsOnScreen = spawned.Count;
         TouchForce.Instance.MayTouch = true;
     }
 
@@ -70,14 +92,40 @@ public class Spawner : MonoBehaviour {
     }
 
     #region Events
-    public void ObjDestroyed(int points, GameObject gameObject)
+    public void ObjDestroyed(GameObject gameObject)
     {
-        GameManager.Instance.CurrentScore += points;
-        spawned.Remove(gameObject);
-        if(spawned.Count == 0)
+        ObjsOnScreen--;
+        //TODO Spawn Particles
+        Destroy(gameObject);
+    }
+
+    public void ObjOnDeadZone(GameObject gameObject)
+    {
+        ObjDestroyed(gameObject);
+        CheckRoundEnd();
+    }
+    public void ObjOnPointZone(bool gotIn, int points)
+    {
+        Debug.Log("gotin: " + gotIn + " opitns: " + points);
+        objsOnPointZone = gotIn ? objsOnPointZone + 1 : objsOnPointZone - 1;
+        GameManager.Instance.CurrentRoundScore = gotIn ? GameManager.Instance.CurrentRoundScore + points : GameManager.Instance.CurrentRoundScore - points;
+        CheckRoundEnd();
+    }
+    #endregion
+
+    void CheckRoundEnd()
+    {
+        Debug.Log("checking round end" + ObjsOnScreen + " " + ObjsOnPointZone);
+        if (ObjsOnScreen == ObjsOnPointZone)
         {
+            GameManager.Instance.CurrentScore += GameManager.Instance.CurrentRoundScore;
+            foreach (var item in spawned)
+            {
+                if (item != null)
+                    ObjDestroyed(item);
+            }
+            spawned.Clear();
             SpawnObjs();
         }
     }
-    #endregion
 }

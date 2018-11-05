@@ -31,29 +31,42 @@ public class SpawnableObj : MonoBehaviour {
         {
             if (other.tag == "DeadZone")
             {
-                SelfDestroy(false);
+                isAlive = false;
+                Spawner.Instance.ObjOnDeadZone(gameObject);
+            }
+            else if (other.tag == "PointZone")
+            {
+                OnPointingZone(true);
             }
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (isAlive)
+    //    {
+    //        if (other.tag == "PointZone")
+    //        {
+    //            pointTimer -= Time.deltaTime;
+    //            if (pointTimer <= 0.0f)
+    //                SelfDestroy(true);
+    //        }
+    //    }
+    //}
+
+    private void OnTriggerExit(Collider other)
     {
         if (isAlive)
         {
             if (other.tag == "PointZone")
             {
-                pointTimer -= Time.deltaTime;
-                if (pointTimer <= 0.0f)
-                    SelfDestroy(true);
+                OnPointingZone(false);
             }
         }
     }
 
-    void SelfDestroy(bool gotPoints)
+    void OnPointingZone(bool gotIn)
     {
-        isAlive = false;
-        Destroy(transform.Find("Colliders").gameObject);
-        Spawner.Instance.ObjDestroyed(gotPoints ? Points : 0, gameObject);
-        Destroy(gameObject);
+        Spawner.Instance.ObjOnPointZone(gotIn, points);
     }
 }
