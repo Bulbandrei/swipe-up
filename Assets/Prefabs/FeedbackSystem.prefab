@@ -54,16 +54,16 @@ MonoBehaviour:
   feedbacks:
   - text: HOLY SHIT!
     color: {r: 1, g: 0.8666878, b: 0, a: 1}
-    comboCount: 4
+    comboCount: 5
   - text: GODLIKE!
     color: {r: 0.4950776, g: 0, b: 1, a: 1}
-    comboCount: 3
+    comboCount: 4
   - text: Awesome
     color: {r: 0, g: 0.15840816, b: 1, a: 1}
-    comboCount: 2
+    comboCount: 3
   - text: Nice
     color: {r: 0, g: 0.46170044, b: 1, a: 1}
-    comboCount: 1
+    comboCount: 2
   - text: Good
     color: {r: 0, g: 1, b: 0.8184264, a: 1}
-    comboCount: 0
+    comboCount: 1

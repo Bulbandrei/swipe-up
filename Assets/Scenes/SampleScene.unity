@@ -1800,6 +1800,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
+        type: 2}
+      propertyPath: feedbacks.Array.data[4].comboCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
+        type: 2}
+      propertyPath: feedbacks.Array.data[3].comboCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
+        type: 2}
+      propertyPath: feedbacks.Array.data[2].comboCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
+        type: 2}
+      propertyPath: feedbacks.Array.data[1].comboCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
+        type: 2}
+      propertyPath: feedbacks.Array.data[0].comboCount
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 386aacb0937073346a1cfbc8c18b79b1, type: 2}
   m_IsPrefabAsset: 0
