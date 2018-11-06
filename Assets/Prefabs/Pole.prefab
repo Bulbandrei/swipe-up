@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33870066966780658}
   - component: {fileID: 23943766226190958}
   - component: {fileID: 136802598597699606}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pole
   m_TagString: PointZone
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 1407091618301804}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3, y: 4, z: 0}
-  m_LocalScale: {x: 0.3, y: 2, z: 0.3}
+  m_LocalScale: {x: 0.29999998, y: 2, z: 0.29999998}
   m_Children:
   - {fileID: 4770352356242632}
   m_Father: {fileID: 0}
@@ -168,7 +168,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 1.97
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!136 &136802598597699606

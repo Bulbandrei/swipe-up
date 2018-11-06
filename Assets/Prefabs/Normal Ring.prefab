@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 114254403887329782}
   - component: {fileID: 114677355336687892}
   - component: {fileID: 65167112790172464}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Normal Ring
   m_TagString: Spawnable
   m_Icon: {fileID: 0}
