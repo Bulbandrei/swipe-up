@@ -47,6 +47,6 @@ public class FeedbackManager : MonoBehaviour
 
     public bool CheckFeedbackTriggered(FeedbackType feedback)
     {
-        return GameManager.Instance.CurrentScore >= feedback.comboCount;
+        return GameManager.Instance.CurrentRoundScore >= feedback.comboCount;
     }
 }
