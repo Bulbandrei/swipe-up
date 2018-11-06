@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public delegate void UpdateDelegate();
     public UpdateDelegate OnScoreUpdate;
     public UpdateDelegate OnStateUpdate;
-
+  
     public delegate void OnStateChangeDelegate(GameState oldState, GameState newState);
     public OnStateChangeDelegate OnStateChanged;
     
@@ -43,6 +43,10 @@ public class GameManager : MonoBehaviour
         set
         {
             currentRoundScore = value;
+            if (OnScoreUpdate != null)
+            {
+                OnScoreUpdate();
+            }
         }
     }
     public int CurrentScore

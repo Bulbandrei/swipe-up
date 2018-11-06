@@ -1807,23 +1807,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
         type: 2}
-      propertyPath: feedbacks.Array.data[3].comboCount
-      value: 2
+      propertyPath: feedbacks.Array.data[2].color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
         type: 2}
-      propertyPath: feedbacks.Array.data[2].comboCount
-      value: 3
+      propertyPath: feedbacks.Array.data[2].color.g
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
         type: 2}
-      propertyPath: feedbacks.Array.data[1].comboCount
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114509746270640058, guid: 386aacb0937073346a1cfbc8c18b79b1,
-        type: 2}
-      propertyPath: feedbacks.Array.data[0].comboCount
-      value: 5
+      propertyPath: feedbacks.Array.data[2].color.b
+      value: 0.96559095
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 386aacb0937073346a1cfbc8c18b79b1, type: 2}
