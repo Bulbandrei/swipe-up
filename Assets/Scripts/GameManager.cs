@@ -5,22 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-    
-
+   
     public delegate void UpdateDelegate();
     public UpdateDelegate OnScoreUpdate;
     public UpdateDelegate OnStateUpdate;
 
     public delegate void OnStateChangeDelegate(GameState oldState, GameState newState);
     public OnStateChangeDelegate OnStateChanged;
-
+    
     public enum GameState
     {
         Menu,
         InGame,
         EndGame
     }
+
     private int currentRoundScore;
     private int currentScore;
     private int bestScore;

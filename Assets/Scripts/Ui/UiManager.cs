@@ -12,7 +12,7 @@ public class UiManager : MonoBehaviour
     {
         GameManager.Instance.OnStateUpdate += UpdateUi;
     }
-
+    
     private void OnDestroy()
     {
         GameManager.Instance.OnStateUpdate -= UpdateUi;
