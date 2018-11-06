@@ -6,7 +6,8 @@ public class SpawnableObj : MonoBehaviour {
 
     #region Vars
     int points = 1;
-    float pointTimer = 2.0f;
+    float maxPointTimer = 1.0f;
+    float pointTimer = 1.0f;
     bool isAlive = true;
     #endregion
 
@@ -34,25 +35,25 @@ public class SpawnableObj : MonoBehaviour {
                 isAlive = false;
                 Spawner.Instance.ObjOnDeadZone(gameObject);
             }
-            else if (other.tag == "PointZone")
-            {
-                OnPointingZone(true);
-            }
+            //else if (other.tag == "PointZone")
+            //{
+            //    OnPointingZone(true);
+            //}
         }
     }
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (isAlive)
-    //    {
-    //        if (other.tag == "PointZone")
-    //        {
-    //            pointTimer -= Time.deltaTime;
-    //            if (pointTimer <= 0.0f)
-    //                SelfDestroy(true);
-    //        }
-    //    }
-    //}
+    private void OnTriggerStay(Collider other)
+    {
+        if (isAlive)
+        {
+            if (other.tag == "PointZone" && pointTimer > 0)
+            {
+                pointTimer -= Time.deltaTime;
+                if (pointTimer <= 0.0f)
+                    OnPointingZone(true);
+            }
+        }
+    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -60,7 +61,9 @@ public class SpawnableObj : MonoBehaviour {
         {
             if (other.tag == "PointZone")
             {
-                OnPointingZone(false);
+                if (pointTimer <= 0) // This means it counted as a point
+                    OnPointingZone(false);
+                pointTimer = maxPointTimer;
             }
         }
     }

@@ -394,6 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RingPrefab: {fileID: 1827556862801566, guid: 30f620877369aee469c3a1665ab93949, type: 2}
+  RingDestroyParticle: {fileID: 1116193715161530, guid: c8a1bd187715d7541b1ee4bf1560de6f,
+    type: 2}
 --- !u!1 &133406612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,11 +1106,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 136493000037607272, guid: 1a3893d244ca1fc4b9e425bbdf744e20,
-        type: 2}
-      propertyPath: m_Height
-      value: 1.97
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3893d244ca1fc4b9e425bbdf744e20, type: 2}
   m_IsPrefabAsset: 0
@@ -1329,20 +1326,6 @@ Prefab:
       propertyPath: m_Name
       value: Pole (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4193196297215412, guid: 1a3893d244ca1fc4b9e425bbdf744e20, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.29999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4193196297215412, guid: 1a3893d244ca1fc4b9e425bbdf744e20, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.29999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 136802598597699606, guid: 1a3893d244ca1fc4b9e425bbdf744e20,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: dc374db5c5a9a1649b0368ff714bd989,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3893d244ca1fc4b9e425bbdf744e20, type: 2}
   m_IsPrefabAsset: 0
@@ -8189,6 +8172,10 @@ Prefab:
       value: 
       objectReference: {fileID: 13400000, guid: dc374db5c5a9a1649b0368ff714bd989,
         type: 2}
+    - target: {fileID: 1407091618301804, guid: 1a3893d244ca1fc4b9e425bbdf744e20, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3893d244ca1fc4b9e425bbdf744e20, type: 2}
   m_IsPrefabAsset: 0
@@ -8956,9 +8943,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd682e157f1593441ad176cb67008f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAmount: 1250
-  forceRadius: 10
-  touchEffect: {fileID: 1215593828092380, guid: d90281773c1dd8a42a2ff238981e2c04,
+  forceAmount: 500
+  forceRadius: 7
+  touchEffect: {fileID: 1755840246172656, guid: dcf786886c61a4d47af50d82f38f274b,
     type: 2}
 --- !u!4 &2071764976
 Transform:

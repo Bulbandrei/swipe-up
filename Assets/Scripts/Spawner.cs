@@ -13,6 +13,9 @@ public class Spawner : MonoBehaviour {
     [SerializeField]
     GameObject RingPrefab;
 
+    [SerializeField]
+    GameObject RingDestroyParticle;
+
     #region Vars
     int objsOnScreen = 0;
     int objsOnPointZone = 0;
@@ -71,12 +74,12 @@ public class Spawner : MonoBehaviour {
         for (int i = 0; i < SPAWN_AMOUNT; i++)
         {
             // Here I spawn a ring with a Z distance from each other so they won't collide at game start
-            var ring = Instantiate(RingPrefab, new Vector3(xStartPos + (.25f*i), transform.position.y, transform.position.z - (1*i)), Quaternion.identity);
+            var ring = Instantiate(RingPrefab, new Vector3(xStartPos + (.25f*i), transform.position.y, transform.position.z - (1*i)), Quaternion.Euler(Random.Range(0,360.0f),0,0));
             ring.transform.parent = transform;
             spawned.Add(ring);
         }
         ObjsOnScreen = spawned.Count;
-        TouchForce.Instance.MayTouch = true;
+        ObjsOnPointZone = 0;
     }
 
     void DestroyObjs()
@@ -92,21 +95,20 @@ public class Spawner : MonoBehaviour {
     }
 
     #region Events
-    public void ObjDestroyed(GameObject gameObject)
+    public void ObjDestroyed(GameObject gObject)
     {
         ObjsOnScreen--;
-        //TODO Spawn Particles
-        Destroy(gameObject);
+        Instantiate(RingDestroyParticle, gObject.transform.position, Quaternion.identity);
+        Destroy(gObject);
     }
 
-    public void ObjOnDeadZone(GameObject gameObject)
+    public void ObjOnDeadZone(GameObject gObject)
     {
-        ObjDestroyed(gameObject);
+        ObjDestroyed(gObject);
         CheckRoundEnd();
     }
     public void ObjOnPointZone(bool gotIn, int points)
     {
-        Debug.Log("gotin: " + gotIn + " opitns: " + points);
         objsOnPointZone = gotIn ? objsOnPointZone + 1 : objsOnPointZone - 1;
         GameManager.Instance.CurrentRoundScore = gotIn ? GameManager.Instance.CurrentRoundScore + points : GameManager.Instance.CurrentRoundScore - points;
         CheckRoundEnd();
@@ -115,7 +117,6 @@ public class Spawner : MonoBehaviour {
 
     void CheckRoundEnd()
     {
-        Debug.Log("checking round end" + ObjsOnScreen + " " + ObjsOnPointZone);
         if (ObjsOnScreen == ObjsOnPointZone)
         {
             GameManager.Instance.CurrentScore += GameManager.Instance.CurrentRoundScore;

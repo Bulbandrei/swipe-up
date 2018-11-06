@@ -10,3 +10,6 @@ https://www.gamedeveloperstudio.com/graphics/viewgraphic.php?item=1u5l0o9z5m3s6b
 
 Buttons:
 https://craftpix.net/freebies/free-buttons-2d-game-objects/
+
+Texturas de partículas:
+https://kenney.nl/assets/particle-pack

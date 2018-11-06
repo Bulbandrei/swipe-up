@@ -5,21 +5,8 @@ using UnityEngine;
 public class TouchForce : MonoBehaviour {
 
     #region Vars
-    bool mayTouch;
     #endregion
     #region Properties
-    public bool MayTouch
-    {
-        get
-        {
-            return mayTouch;
-        }
-
-        set
-        {
-            mayTouch = value;
-        }
-    }
     #endregion
 
     public static TouchForce Instance;
@@ -41,27 +28,33 @@ public class TouchForce : MonoBehaviour {
     #endregion
 
     void Update () {
-		//if (MayTouch)
-  //      {
-            if (Input.GetMouseButtonDown(0))
-            {
-                var mousePos = Input.mousePosition;
-                mousePos.z = 24.0f; // Distance between the camera and the objects - I put 1 point less so the rings will turn around randomly
-                mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-                AddForce(mousePos);
-            }
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            var mousePos = Input.mousePosition;
+            mousePos.z = 24.0f; // Distance between the camera and the objects - I put 1 point less so the rings will turn around randomly
+            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            AddForce(mousePos);
+        }
     }
 
     void AddForce(Vector3 forcePosition)
     {
-        MayTouch = false;
         // Finds every spawnable and add effect to it
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Spawnable");
         foreach (var item in objects)
         {
-            forcePosition.z = item.transform.position.z + 0.15f;
-            item.GetComponent<Rigidbody>().AddExplosionForce(forceAmount, forcePosition, forceRadius);
+            if (forcePosition.y > item.transform.position.y)
+                continue;
+
+            var delta = item.transform.position - forcePosition;
+            var force = delta + Vector3.up;
+            force.z = 0;
+            
+            float forceMod = 1 - (force.magnitude / forceRadius);
+            force = force * Mathf.Clamp01(forceMod);
+            force.z = .25f;
+            item.GetComponent<Rigidbody>().AddForce(force * forceAmount);
+
             item.GetComponent<SpawnablePositionController>().IsActive = true;
         }
         // Set Gravity back to normal
