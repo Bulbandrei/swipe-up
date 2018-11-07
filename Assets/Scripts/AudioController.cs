@@ -5,7 +5,11 @@ using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour {
 
-    public static AudioController Instance;
+    public static AudioController Instance { get; private set; }
+
+    public delegate void SoundSwitchDelegate();
+    public SoundSwitchDelegate OnMusicSwitch;
+    public SoundSwitchDelegate OnSoundFxSwitch;
 
     [SerializeField]
     AudioMixer masterMixer;
@@ -25,11 +29,15 @@ public class AudioController : MonoBehaviour {
     {
         musicOn = !musicOn;
         masterMixer.SetFloat("musicVol", musicOn ? 0 : -80); // Exposed var in Sound Mixer
+        if (OnMusicSwitch != null)
+            OnMusicSwitch();
     }
 
     public void TurnSound()
     {
         soundOn = !soundOn;
         masterMixer.SetFloat("soundFxVol", soundOn ? 0 : -80); // Exposed var in Sound Mixer
+        if (OnSoundFxSwitch != null)
+            OnSoundFxSwitch();
     }
 }
