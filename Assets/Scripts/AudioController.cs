@@ -1,7 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+
+public enum AudioType
+{
+    Success,
+    Force,
+    RingCollision
+}
 
 public class AudioController : MonoBehaviour {
 
@@ -11,6 +19,10 @@ public class AudioController : MonoBehaviour {
     public SoundSwitchDelegate OnMusicSwitch;
     public SoundSwitchDelegate OnSoundFxSwitch;
 
+    public delegate void AudioTypeDelegate(AudioType audioType);
+
+    public static AudioTypeDelegate OnRequestPlayAudio;
+    
     [SerializeField]
     AudioMixer masterMixer;
 
@@ -40,4 +52,13 @@ public class AudioController : MonoBehaviour {
         if (OnSoundFxSwitch != null)
             OnSoundFxSwitch();
     }
+
+    public void PlayAudio(AudioType audioType)
+    {
+        if (OnRequestPlayAudio != null)
+        {
+            OnRequestPlayAudio(audioType);
+        }
+    }
+    
 }
