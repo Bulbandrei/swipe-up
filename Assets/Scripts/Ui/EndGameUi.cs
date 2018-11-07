@@ -11,6 +11,12 @@ public class EndGameUi : MonoBehaviour
     [SerializeField]
     private Text bestScoreText;
 
+    [SerializeField]
+    AudioClip gameOverSoundClip;
+
+    [SerializeField]
+    AudioClip gameOverNewBestSoundClip;
+
     public void StartGame()
     {
         GameManager.Instance.CurrentGameState = GameManager.GameState.InGame;
@@ -21,9 +27,10 @@ public class EndGameUi : MonoBehaviour
         GameManager.Instance.CurrentGameState = GameManager.GameState.Menu;
     }
 
-    public void OnEnabled()
+    public void OnEnable()
     {
         UpdateUi();
+        PlayGameOverSound();
     }
 
     public void Start()
@@ -34,6 +41,13 @@ public class EndGameUi : MonoBehaviour
     public void UpdateUi()
     {
         scoreText.text = GameManager.Instance.CurrentScore.ToString();
-        bestScoreText.text = GameManager.Instance.CurrentScore.ToString();
+        bestScoreText.text = GameManager.Instance.BestScore.ToString();
+    }
+
+    void PlayGameOverSound()
+    {
+        // Sets the audio clip and play the game over sound
+        GetComponent<AudioSource>().clip = GameManager.Instance.CurrentScore == GameManager.Instance.BestScore ? gameOverNewBestSoundClip : gameOverSoundClip;
+        GetComponent<AudioSource>().Play();
     }
 }

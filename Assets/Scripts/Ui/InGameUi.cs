@@ -31,8 +31,9 @@ public class InGameUi : MonoBehaviour
         GameManager.Instance.OnScoreUpdate -= UpdateUi;
     }
 
-    public void OnEnabled()
+    public void OnEnable()
     {
+        GameManager.Instance.CurrentScore = 0;
         UpdateUi();
     }
 
@@ -44,6 +45,6 @@ public class InGameUi : MonoBehaviour
     public void UpdateUi()
     {
         scoreText.text = GameManager.Instance.CurrentScore.ToString();
-        bestScoreText.text = GameManager.Instance.CurrentScore.ToString();
+        bestScoreText.text = GameManager.Instance.BestScore.ToString();
     }
 }

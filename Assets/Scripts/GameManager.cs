@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
     private int bestScore;
     private GameState currentGameState = GameState.Menu;
 
+    [SerializeField]
+    AudioClip successAudio1;
+    [SerializeField]
+    AudioClip successAudio2;
+
     public int BestScore
     {
         get
@@ -58,10 +63,12 @@ public class GameManager : MonoBehaviour
         set
         {
             currentScore = value;
-            if(bestScore >= currentScore)
+            if(currentScore >= bestScore)
             {
                 bestScore = currentScore;
             }
+            if (CurrentRoundScore > 0)
+                PlayRandomSuccessSound();
             CurrentRoundScore = 0;
             if(OnScoreUpdate != null)
             {
@@ -97,4 +104,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    void PlayRandomSuccessSound()
+    {
+        GetComponent<AudioSource>().clip = Random.Range(0, 2) == 0 ? successAudio1 : successAudio2;
+        GetComponent<AudioSource>().Play();
+    }
 }

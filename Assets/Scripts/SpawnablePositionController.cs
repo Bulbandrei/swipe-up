@@ -25,7 +25,10 @@ public class SpawnablePositionController : MonoBehaviour {
         {
             isActive = value;
             if (isActive)
+            {
                 StartCoroutine(LerpPosition());
+                StartCoroutine(LerpRotation());
+            }
         }
     }
 
@@ -52,5 +55,15 @@ public class SpawnablePositionController : MonoBehaviour {
         //{
         //    startPos.z = Mathf.Lerp(minZPosition, maxZPosition, )
         //}
+    }
+
+    IEnumerator LerpRotation()
+    {
+        Vector3 desiredRotation = new Vector3(90, 0, 0);
+        while (IsActive)
+        {
+            //transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, desiredRotation, Time.deltaTime / 2);
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

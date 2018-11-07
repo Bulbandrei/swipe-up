@@ -20,10 +20,13 @@ public class TouchForce : MonoBehaviour {
     [SerializeField]
     GameObject touchEffect;
 
+    AudioSource audioSource;
+
     #region Initialization
     private void Awake()
     {
         Instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
     #endregion
 
@@ -34,6 +37,7 @@ public class TouchForce : MonoBehaviour {
             mousePos.z = 24.0f; // Distance between the camera and the objects - I put 1 point less so the rings will turn around randomly
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             AddForce(mousePos);
+            audioSource.Play();
         }
     }
 
@@ -52,8 +56,10 @@ public class TouchForce : MonoBehaviour {
             
             float forceMod = 1 - (force.magnitude / forceRadius);
             force = force * Mathf.Clamp01(forceMod);
-            force.z = .25f;
+            force.z = 0.0f;
             item.GetComponent<Rigidbody>().AddForce(force * forceAmount);
+            //item.GetComponent<Rigidbody>().AddTorque(Vector3.up * 100000, ForceMode.Acceleration);
+            //item.GetComponent<Rigidbody>().AddTorque(Vector3.right * 100000, ForceMode.Acceleration);
 
             item.GetComponent<SpawnablePositionController>().IsActive = true;
         }

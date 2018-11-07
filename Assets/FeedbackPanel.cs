@@ -21,7 +21,6 @@ public class FeedbackPanel : MonoBehaviour {
 
     void PlayFeedback(FeedbackType feedback)
     {
-        Debug.Log("here asdfasdfasdf");
         text.text = feedback.text;
         text.color = feedback.color;
         animator.Play("Feedback");

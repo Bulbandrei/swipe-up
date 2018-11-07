@@ -11,5 +11,18 @@ https://www.gamedeveloperstudio.com/graphics/viewgraphic.php?item=1u5l0o9z5m3s6b
 Buttons:
 https://craftpix.net/freebies/free-buttons-2d-game-objects/
 
-Texturas de partículas:
+Particle Textures:
 https://kenney.nl/assets/particle-pack
+
+UI:
+https://kenney.nl/assets/game-icons
+
+Music:
+https://www.bensound.com
+
+Sound effects:
+https://freesound.org/people/fins/
+https://freesound.org/people/plasterbrain/sounds/397355/
+
+Fonts:
+https://www.dafont.com
