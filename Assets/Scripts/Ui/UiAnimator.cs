@@ -121,7 +121,7 @@ public class UiAnimator : MonoBehaviour {
         float scaleAmount = 0.05f;
         float beatTime = 0.5f; // Here I'm trying to make the animation match the speed of the music beat
         // Initialize Scale
-        endScale = transform.localScale;
+        endScale = Vector3.one;
         endScale.x -= scaleAmount / 2; 
         endScale.y -= scaleAmount / 2;
         yield return ScaleTo(transform.localScale, endScale, beatTime);
@@ -129,7 +129,7 @@ public class UiAnimator : MonoBehaviour {
         while (true)
         {
             // Scale Up
-            endScale = transform.localScale;
+            endScale = Vector3.one;
             endScale.x += scaleAmount;
             endScale.y += scaleAmount;
             yield return ScaleTo(transform.localScale, endScale, beatTime / 4);
