@@ -10,12 +10,12 @@ public class AudioPlayer : MonoBehaviour
     private void Awake()
     {
         audioSources = GetComponents<AudioSource>();
-        
+        AudioController.OnRequestPlayAudio += OnRequestPlayAudio;
     }
 
     private void OnDestroy()
     {
-        
+        AudioController.OnRequestPlayAudio -= OnRequestPlayAudio;
     }
 
     public void OnRequestPlayAudio(AudioType audioType)
@@ -28,6 +28,7 @@ public class AudioPlayer : MonoBehaviour
 
     public void PlayRandom()
     {
+        Debug.Log("playing " + gameObject.name);
         int randIndex = Random.Range(0, audioSources.Length);
         audioSources[randIndex].Play();
     }

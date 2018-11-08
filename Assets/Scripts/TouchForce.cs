@@ -37,7 +37,7 @@ public class TouchForce : MonoBehaviour {
             mousePos.z = 24.0f; // Distance between the camera and the objects - I put 1 point less so the rings will turn around randomly
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             AddForce(mousePos);
-            audioSource.Play();
+            AudioController.Instance.PlayAudio(AudioType.Force);
         }
     }
 

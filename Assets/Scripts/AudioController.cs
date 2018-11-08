@@ -8,7 +8,8 @@ public enum AudioType
 {
     Success,
     Force,
-    RingCollision
+    RingCollision,
+    Click
 }
 
 public class AudioController : MonoBehaviour {
