@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class SpawnablePositionController : MonoBehaviour {
 
+    
     float minZPosition;
 
     [SerializeField]
@@ -57,11 +58,26 @@ public class SpawnablePositionController : MonoBehaviour {
         //}
     }
 
+    
+    
     IEnumerator LerpRotation()
     {
-        Vector3 desiredRotation = new Vector3(90, 0, 0);
+        Vector3 desiredRotation = Vector3.up;
+        //Vector3 desiredRotation = new Vector3(90, 0, 0);
+        
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+        
         while (IsActive)
         {
+            
+            if (rigidbody.velocity.y < 0)
+            {
+                var angleToUp = Vector3.Angle(transform.forward, Vector3.up);
+                var angleToDown = Vector3.Angle(transform.forward, Vector3.down);
+                desiredRotation = angleToUp < angleToDown ? Vector3.up : Vector3.down;
+                
+                transform.forward = Vector3.RotateTowards(transform.forward, desiredRotation,0.25f *Time.fixedDeltaTime, 10);
+            }
             //transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, desiredRotation, Time.deltaTime / 2);
             yield return new WaitForFixedUpdate();
         }

@@ -58,6 +58,7 @@ public class TouchForce : MonoBehaviour {
             force = force * Mathf.Clamp01(forceMod);
             force.z = 0.0f;
             item.GetComponent<Rigidbody>().AddForce(force * forceAmount);
+            item.GetComponent<Rigidbody>().AddTorque(Vector3.right * forceAmount * 100);
             //item.GetComponent<Rigidbody>().AddTorque(Vector3.up * 100000, ForceMode.Acceleration);
             //item.GetComponent<Rigidbody>().AddTorque(Vector3.right * 100000, ForceMode.Acceleration);
 
