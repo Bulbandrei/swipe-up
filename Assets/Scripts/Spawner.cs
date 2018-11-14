@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour {
 	
 	void SpawnObjs()
     {
-        GravityController.NoGravity();
+        GravityController.Instance.NoGravity();
 
         float xStartPos = Random.Range(-4.0f, 4.0f);
         for (int i = 0; i < SPAWN_AMOUNT; i++)

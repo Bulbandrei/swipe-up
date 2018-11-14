@@ -65,7 +65,7 @@ public class TouchForce : MonoBehaviour {
             item.GetComponent<SpawnablePositionController>().IsActive = true;
         }
         // Set Gravity back to normal
-        GravityController.WaterGravity();
+        GravityController.Instance.WaterGravity();
         // Spawn effect
         Instantiate(touchEffect, forcePosition, Quaternion.identity);
     }
